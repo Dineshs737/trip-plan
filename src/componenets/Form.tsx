@@ -9,7 +9,7 @@ export default function Form({onAddItems} :formProps):React.JSX.Element{
 
     const [description , setDescription] = useState<string>("")
     const [qunatity , setQueantity] = useState<number>(1);
-    console.log(onAddItems)
+    // console.log(onAddItems)
     
 
 

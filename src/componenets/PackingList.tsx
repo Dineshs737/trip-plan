@@ -7,44 +7,52 @@ type DeleteItemProps = {
 type UpdateItemType = {
     onUpdateItem: (id: number) => void,
 }
+type ClearListItemType = {
+    onClearList : ()=>void ,
+}
 type Props = {
     items: InitialItemsType[],
 
-} & DeleteItemProps & UpdateItemType
+} & DeleteItemProps & UpdateItemType &ClearListItemType
 
 
 type SortType = "input" | "description" | "packed";
 
-export default function PackingList({ items, onDeleteItems, onUpdateItem }: Props) {
+export default function PackingList({ items, onDeleteItems, onUpdateItem  , onClearList}: Props) {
 
     const [sortBy, setSortBy] = useState<SortType>("input");
     let sortedItems : InitialItemsType[]  = []
 
-    if(sortBy === "input") sortedItems = items;
+    
 
     if(sortBy === "description") {
         sortedItems = items.slice().sort((a:InitialItemsType ,b:InitialItemsType)=> 
             a.description.localeCompare(b.description))
     }
 
-    if(sortBy === "packed"){
+    else if(sortBy === "packed"){
         sortedItems = items.slice().sort((a:InitialItemsType ,b:InitialItemsType)=> 
             Number(a.isPacked) - Number(b.isPacked))
+    }
+    else{
+      
+        sortedItems = items; //sortBy === "input"
     }
 
 
 
     return (
         <>
-        {
-            sortedItems.length > 0 &&(
+        
+           
                 <div className="list">
+                    { sortedItems.length > 0 &&(
             <ul>
                 {
-                    sortedItems.map(({ id, description, quantity, isPacked }) => < Item onUpdateItem={onUpdateItem} onDeleteItems={onDeleteItems} id={id} description={description} quantity={quantity} isPacked={isPacked} key={id} />)
+                    sortedItems.map(({ id, description, quantity, isPacked }) => < Item  onUpdateItem={onUpdateItem} onDeleteItems={onDeleteItems} id={id} description={description} quantity={quantity} isPacked={isPacked} key={id} />)
                 }
             </ul>
-
+                )}
             <div className="actions">
                 <select
                     value={sortBy}
@@ -57,16 +65,23 @@ export default function PackingList({ items, onDeleteItems, onUpdateItem }: Prop
                     <option value="packed">Sort by packed status</option>
                 </select>
 
+
+                <button onClick={
+                    ():void=>{
+                        onClearList()
+                    }
+                    }>Clear list</button>
+
             </div>
 
         </div>
-            )
-        }
+            
+        
         </>
     )
 }
 
-export function Item({ id, description, quantity, isPacked, onDeleteItems, onUpdateItem }: InitialItemsType & DeleteItemProps & UpdateItemType): React.JSX.Element {
+export function Item({ id, description, quantity, isPacked, onDeleteItems, onUpdateItem  }: InitialItemsType & DeleteItemProps & UpdateItemType): React.JSX.Element {
 
     return (
         <li>

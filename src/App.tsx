@@ -8,18 +8,23 @@ import type { InitialItemsType } from "./item";
 
 export default function App(){
   const [items , setItems] = useState<InitialItemsType[]>(initialItems);
-  console.log(items)
+  // console.log(items)
 
   const addItem : (item :InitialItemsType)=>void = (item) => {
         setItems((items)=> [...items  , item])
     }
 
-const deleteItem = (id: number): void => {
+  const deleteItem = (id: number): void => {
   setItems((items: InitialItemsType[]) =>
     items.filter((item: InitialItemsType) => item.id !== id)
   );
 };
 
+const clearList : ()=>void = ()=>{
+  const confirmed : boolean = window.confirm("Are you sure you want to delete all items ?");
+  if(confirmed) setItems([]);
+ 
+}
 // const updateItem : (id:number  , packed:boolean)=> void = (id ,packed)=>{
 //   setItems((items:InitialItemsType[])=> items.map((item:InitialItemsType)=>{
 //           item.id === id && item.packed  = packed 
@@ -46,7 +51,7 @@ const updateItem = (id:number):void =>{
       <div className="app">
       <Logo />
       <Form onAddItems= {addItem} />
-      <PackingList items = {items} onDeleteItems = {deleteItem} onUpdateItem = {updateItem} />
+      <PackingList onClearList = {clearList} items = {items} onDeleteItems = {deleteItem} onUpdateItem = {updateItem} />
       <Stats items={items} />
       </div>
     )
