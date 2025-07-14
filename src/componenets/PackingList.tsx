@@ -10,7 +10,7 @@ type Props = {items: InitialItemsType[] ,
 
 }&DeleteItemProps & UpdateItemType
 
-
+const sortOptions : string[]  = ["sort by input order" , "sort by input order" , "sort bt packed status"]
 
 export default function PackingList({items , onDeleteItems ,onUpdateItem } : Props ){ 
     return(
@@ -20,11 +20,13 @@ export default function PackingList({items , onDeleteItems ,onUpdateItem } : Pro
                     items.map(({id ,description , quantity , isPacked }) => < Item onUpdateItem={onUpdateItem} onDeleteItems = {onDeleteItems} id = {id} description = {description} quantity = {quantity} isPacked = {isPacked} key={id} />)
             }
            </ul>
+
+           {/* <SortBox  /> */}
         </div>
     )
 } 
 
-function Item({ id, description, quantity, isPacked ,onDeleteItems  , onUpdateItem}: InitialItemsType&DeleteItemProps&UpdateItemType):React.JSX.Element{
+export function Item({ id, description, quantity, isPacked ,onDeleteItems  , onUpdateItem}: InitialItemsType&DeleteItemProps&UpdateItemType):React.JSX.Element{
    
 return (
     <li>
@@ -40,4 +42,18 @@ return (
      </li>
 )
     
+}
+
+
+
+export function SortBox():React.JSX.Element{
+    return (
+        <div>
+            <select >
+            {
+                sortOptions.map((sortMethodName:string ,index:number)=> <option key={index} value={sortMethodName} id={sortMethodName} />)
+            }
+            </select>
+        </div>
+    )
 }
