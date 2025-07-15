@@ -21,7 +21,8 @@ export default function App(){
 };
 
 const clearList : ()=>void = ()=>{
-  const confirmed : boolean = window.confirm("Are you sure you want to delete all items ?");
+let confirmed : boolean  = false
+ if( items.length > 0)  confirmed = window.confirm("Are you sure you want to delete all items ?");
   if(confirmed) setItems([]);
  
 }
