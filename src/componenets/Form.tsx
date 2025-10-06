@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import type { InitialItemsType } from "../item";
-import initialItems from "../item";
+import useItem from "../contexts/Item.context";
 
-type formProps = { onAddItems: (item: InitialItemsType) => void };
-
-export default function Form({ onAddItems }: formProps): React.JSX.Element {
+export default function Form(): React.JSX.Element {
   const [description, setDescription] = useState<string>("");
   const [qunatity, setQueantity] = useState<number>(1);
-  // console.log(onAddItems)
+
+  const { addItem } = useItem();
 
   const handileSubmit: (event: React.FormEvent<HTMLFormElement>) => void = (
     event,
@@ -23,7 +22,7 @@ export default function Form({ onAddItems }: formProps): React.JSX.Element {
     };
     // console.log(onAddItems.name)
     // console.log(newItem)
-    onAddItems(newItem);
+    addItem(newItem);
 
     setDescription("");
     setQueantity(1);
@@ -65,4 +64,3 @@ export default function Form({ onAddItems }: formProps): React.JSX.Element {
     </form>
   );
 }
-

@@ -1,6 +1,8 @@
-import type { InitialItemsType } from "../item";
+import useItem from "../contexts/Item.context";
+import type { Item } from "../types/item.type";
 
-export default function Stats({ items }: { items: InitialItemsType[] }) {
+export default function Stats() {
+  const { items } = useItem();
   // console.log(items.length)
   if (!items.length)
     return (
@@ -9,12 +11,9 @@ export default function Stats({ items }: { items: InitialItemsType[] }) {
       </p>
     );
   const totalItem: number = items.length;
-  const totalPackedItems: number = items.reduce(
-    (prv: number, item: InitialItemsType) => {
-      return item.isPacked ? (prv += 1) : prv;
-    },
-    0,
-  );
+  const totalPackedItems: number = items.reduce((prv: number, item: Item) => {
+    return item.isPacked ? (prv += 1) : prv;
+  }, 0);
 
   const presantage: number =
     totalItem > 0 ? Math.round((totalPackedItems / totalItem) * 100) : 0;
@@ -28,4 +27,3 @@ export default function Stats({ items }: { items: InitialItemsType[] }) {
     </footer>
   );
 }
-
