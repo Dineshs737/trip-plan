@@ -26,19 +26,6 @@ export default function App() {
       confirmed = window.confirm("Are you sure you want to delete all items ?");
     if (confirmed) setItems([]);
   };
-  // const updateItem : (id:number  , packed:boolean)=> void = (id ,packed)=>{
-  //   setItems((items:InitialItemsType[])=> items.map((item:InitialItemsType)=>{
-  //           item.id === id && item.packed  = packed
-  //   }))
-  // }
-
-  // const updateItem = (id: number, packed: boolean): void => {
-  //   setItems((items: InitialItemsType[]) =>
-  //     items.map((item: InitialItemsType) =>
-  //       item.id === id ? { ...item, packed } : item
-  //     )
-  //   );
-  // };
 
   const updateItem = (id: number): void => {
     setItems((items: InitialItemsType[]) =>

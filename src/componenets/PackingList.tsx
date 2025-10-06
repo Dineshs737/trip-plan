@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import type { InitialItemsType } from "../item";
-import initialItems from "../item";
+
 type DeleteItemProps = {
   onDeleteItems: (id: number) => void;
 };
@@ -66,10 +66,7 @@ export default function PackingList({
           <select
             value={sortBy}
             onChange={(event: React.ChangeEvent<HTMLSelectElement>): void =>
-              setSortBy(
-                (currentElement: SortType) =>
-                  (currentElement = event.target.value as SortType),
-              )
+              setSortBy(event.target.value as SortType)
             }
           >
             <option value="input">Sort by input order</option>
