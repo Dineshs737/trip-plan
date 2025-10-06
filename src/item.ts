@@ -1,7 +1,7 @@
 // export type InitialItemsType = {
-//     id: number, 
-//     description: string, 
-//     quantity: number, 
+//     id: number,
+//     description: string,
+//     quantity: number,
 //     packed: boolean
 // }
 
@@ -10,9 +10,7 @@
 //     { id: 2, description: "Socks", quantity: 12, packed: false },
 // ];
 
-
 // export default initialItems;
-
 
 export type InitialItemsType = {
   id: number;
@@ -21,7 +19,7 @@ export type InitialItemsType = {
   isPacked: boolean;
 };
 
-/*const initialItems: InitialItemsType[] = [
+const initialItems: InitialItemsType[] = [
   { id: 1, description: "Passports", quantity: 2, isPacked: false },
   { id: 2, description: "Socks", quantity: 12, isPacked: false },
   { id: 3, description: "T-Shirts", quantity: 6, isPacked: true },
@@ -38,14 +36,9 @@ export type InitialItemsType = {
   { id: 14, description: "Camera", quantity: 1, isPacked: false },
   { id: 15, description: "Travel Pillow", quantity: 1, isPacked: false },
 ];
-*/
 
+/*const initialItems: InitialItemsType[] = [
 
-
-const initialItems: InitialItemsType[] = [
- 
-];
-
-
+]; */
 
 export default initialItems;
