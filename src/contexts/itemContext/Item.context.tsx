@@ -1,14 +1,9 @@
-import {
-  createContext,
-  useContext,
-  useState,
-  type SetStateAction,
-} from "react";
+import { createContext, useContext, useReducer } from "react";
 import { type Item } from "../../types/item.type";
+import { ItemReducer } from "./item.reducer";
 
 interface ItemContexType {
   items: Item[];
-  setItems: React.Dispatch<SetStateAction<Item[]>>;
   addItem: (item: Item) => void;
   deleteItem: (id: number) => void;
   updateItem: (id: number) => void;
@@ -22,37 +17,28 @@ type ItemProviderType = {
 };
 
 export function ItemProvider({ children }: ItemProviderType) {
-  const [items, setItems] = useState<Item[]>([]);
-  // console.log(items)
+  const [{ items }, dispatch] = useReducer(ItemReducer, { items: [] });
 
   const addItem: (item: Item) => void = (item) => {
-    setItems((items) => [...items, item]);
+    dispatch({ type: "item/add", payload: item });
   };
 
   const deleteItem = (id: number): void => {
-    setItems((items: Item[]) => items.filter((item: Item) => item.id !== id));
+    dispatch({ type: "item/delete", payload: id });
   };
 
   const clearList: () => void = () => {
-    let confirmed: boolean = false;
-    if (items.length > 0)
-      confirmed = window.confirm("Are you sure you want to delete all items ?");
-    if (confirmed) setItems([]);
+    dispatch({ type: "item/clearAll" });
   };
 
   const updateItem = (id: number): void => {
-    setItems((items: Item[]) =>
-      items.map((item: Item) =>
-        item.id === id ? { ...item, isPacked: !item.isPacked } : item,
-      ),
-    );
+    dispatch({ type: "item/update", payload: id });
   };
 
   return (
     <ItemContex.Provider
       value={{
         items: items,
-        setItems: setItems,
         addItem: addItem,
         deleteItem: deleteItem,
         clearList: clearList,
