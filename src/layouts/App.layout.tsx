@@ -5,11 +5,13 @@ import Stats from "../componenets/Stats";
 
 export function AppLayout(): React.JSX.Element {
   return (
-    <div className="app">
+    <div className="w-screen h-screen bg-gray-50 pb-12">
       <Logo />
-      <Form />
-      <PackingList />
-      <Stats />
+      <div className="container mx-auto px-4">
+        <Form />
+        <PackingList />
+        <Stats />
+      </div>
     </div>
   );
 }

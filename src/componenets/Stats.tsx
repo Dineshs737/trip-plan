@@ -3,10 +3,9 @@ import type { Item } from "../types/item.type";
 
 export default function Stats() {
   const { items } = useItem();
-  // console.log(items.length)
   if (!items.length)
     return (
-      <p className="stats">
+      <p className="stats bg-gray-50 text-gray-600 text-center text-lg font-medium py-4 px-6 rounded-md shadow-sm">
         <em>Start adding some items to your packing list</em>
       </p>
     );
@@ -18,11 +17,11 @@ export default function Stats() {
   const presantage: number =
     totalItem > 0 ? Math.round((totalPackedItems / totalItem) * 100) : 0;
   return (
-    <footer className="stats">
+    <footer className="stats bg-gray-50 text-gray-600 text-center text-lg font-medium py-4 px-6 rounded-md shadow-sm">
       <em>
         {presantage === 100
           ? "You got everything! Ready to go ✈️"
-          : `💼 you have ${totalItem}${totalItem > 1 ? "" : "s"} items on your list , and you already packed ${totalItem} (${presantage}%)`}
+          : `💼 You have ${totalItem} item${totalItem > 1 ? "s" : ""} on your list, and you already packed ${totalPackedItems} (${presantage}%)`}
       </em>
     </footer>
   );
