@@ -4,7 +4,7 @@ import {
   useState,
   type SetStateAction,
 } from "react";
-import { type Item } from "../types/item.type";
+import { type Item } from "../../types/item.type";
 
 interface ItemContexType {
   items: Item[];

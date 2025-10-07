@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import type { InitialItemsType } from "../item";
-import useItem from "../contexts/Item.context";
+import useItem from "../contexts/itemContext/Item.context";
+import type { Item } from "../types/item.type";
 
 export default function Form(): React.JSX.Element {
   const [description, setDescription] = useState<string>("");
@@ -14,7 +14,7 @@ export default function Form(): React.JSX.Element {
     event.preventDefault();
     if (!description) return;
 
-    const newItem: InitialItemsType = {
+    const newItem: Item = {
       description: description,
       quantity: qunatity,
       isPacked: false,

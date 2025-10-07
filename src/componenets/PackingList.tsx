@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useItem from "../contexts/Item.context";
+import useItem from "../contexts/itemContext/Item.context";
 import type { Item } from "../types/item.type";
 
 type SortType = "input" | "description" | "packed";

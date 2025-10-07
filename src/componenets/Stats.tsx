@@ -1,4 +1,4 @@
-import useItem from "../contexts/Item.context";
+import useItem from "../contexts/itemContext/Item.context";
 import type { Item } from "../types/item.type";
 
 export default function Stats() {
