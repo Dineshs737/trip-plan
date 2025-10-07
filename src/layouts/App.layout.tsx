@@ -5,13 +5,13 @@ import Stats from "../componenets/Stats";
 
 export function AppLayout(): React.JSX.Element {
   return (
-    <div className="w-screen h-screen bg-gray-50 pb-12">
+    <div className="min-h-screen flex flex-col  bg-gray-200">
       <Logo />
-      <div className="container mx-auto px-4">
+      <div className="flex-1 container mx-auto px-4 py-6">
         <Form />
         <PackingList />
-        <Stats />
       </div>
+      <Stats />
     </div>
   );
 }
