@@ -4,11 +4,11 @@ import type { Item } from "../types/item.type";
 
 export default function Form(): React.JSX.Element {
   const [description, setDescription] = useState<string>("");
-  const [qunatity, setQueantity] = useState<number>(1);
+  const [quantity, setQuantity] = useState<number>(1);
 
   const { addItem } = useItem();
 
-  const handileSubmit: (event: React.FormEvent<HTMLFormElement>) => void = (
+  const handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void = (
     event,
   ) => {
     event.preventDefault();
@@ -16,7 +16,7 @@ export default function Form(): React.JSX.Element {
 
     const newItem: Item = {
       description: description,
-      quantity: qunatity,
+      quantity: quantity,
       isPacked: false,
       id: Date.now(),
     };
@@ -25,14 +25,14 @@ export default function Form(): React.JSX.Element {
     addItem(newItem);
 
     setDescription("");
-    setQueantity(1);
+    setQuantity(1);
     // console.log("button clicked "  , event);
   };
 
   return (
     <form
       className="max-w-2xl mx-auto p-6 bg-inherit rounded-lg shadow-md mt-8"
-      onSubmit={handileSubmit}
+      onSubmit={handleSubmit}
     >
       <h3 className="text-2xl font-semibold text-gray-700 mb-6 text-center">
         What do you need for your 😍 trip?
@@ -41,9 +41,9 @@ export default function Form(): React.JSX.Element {
         <select
           className="p-2 border border-none rounded-md bg-gray-50 hover:bg-gray-100 transition-colors w-24"
           onChange={(event: React.ChangeEvent<HTMLSelectElement>): void =>
-            setQueantity(Number(event.target.value))
+            setQuantity(Number(event.target.value))
           }
-          value={qunatity}
+          value={quantity}
         >
           {Array.from({ length: 20 }, (_, i) => i + 1).map((num) => (
             <option value={num} key={num}>
